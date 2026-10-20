@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>先佑的個人介紹</title>
+
+    <style>
+        /* 1. 全站基本設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            background: #f5f8ff;
+            color: #24324a;
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 2. 導覽列 */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e1e9f5;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            list-style: none;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* 3. 首頁自我介紹 */
+        .hero {
+            max-width: 1100px;
+            margin: auto;
+            padding: 100px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 14px;
+            background: #dce9ff;
+            color: #2457b5;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #2563eb;
+        }
+
+        .hero-text p {
+            color: #64748b;
+            margin-bottom: 28px;
+            max-width: 560px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1746b5;
+            transform: translateY(-3px);
+        }
+
+        /* 4. 個人頭像佔位設計 */
+        .avatar {
+            flex-shrink: 0;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #bfdbfe, #dbeafe);
+            border: 8px solid white;
+            box-shadow: 0 15px 40px #2563eb20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            color: #2563eb;
+        }
+
+        /* 5. 共用區塊 */
+        section {
+            padding: 75px 24px;
+            scroll-margin-top: 75px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #64748b;
+        }
+
+        /* 6. 關於我 */
+        #about {
+            background: white;
+        }
+
+        .about-text {
+            max-width: 760px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* 7. 興趣卡片 */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid #e5edf8;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px #24324a12;
+        }
+
+        .card .emoji {
+            font-size: 36px;
+        }
+
+        .card h3 {
+            margin: 12px 0 8px;
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* 8. 學習與經歷 */
+        #experience {
+            background: white;
+        }
+
+        .experience-item {
+            padding: 22px;
+            margin-bottom: 16px;
+            border-left: 4px solid #2563eb;
+            background: #f5f8ff;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .experience-item h3 {
+            margin-bottom: 6px;
+        }
+
+        .experience-item p {
+            color: #64748b;
+        }
+
+        /* 9. 聯絡區塊 */
+        #contact {
+            text-align: center;
+        }
+
+        #contact p {
+            margin-bottom: 22px;
+            color: #64748b;
+        }
+
+        /* 10. 頁尾 */
+        footer {
+            padding: 22px;
+            text-align: center;
+            background: #eaf1ff;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* 11. 手機版排版 */
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 55px;
+                gap: 30px;
+            }
+
+            .avatar {
+                width: 190px;
+                height: 190px;
+                font-size: 55px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 導覽列 -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">先佑的個人網站</a>
+
+            <ul class="nav-links">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#interests">我的興趣</a></li>
+                <li><a href="#experience">我的經歷</a></li>
+                <li><a href="#contact">聯絡我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 首頁 -->
+        <section class="hero" id="home">
+            <div class="hero-text">
+                <span class="tag">WELCOME TO MY WEBSITE</span>
+
+                <h1>你好，我是<br><span>先佑！</span></h1>
+
+                <p>
+                    我是人工智慧應用工程學士學位學程的學生。
+                    我喜歡探索新知、研究歷史，也享受與人交流的過程。
+                    歡迎來到我的個人網站，一起認識我！
+                </p>
+
+                <a href="#about" class="btn">認識更多關於我 →</a>
+            </div>
+
+            <div class="avatar" aria-label="個人頭像佔位圖">
+                先佑
+            </div>
+        </section>
+
+        <!-- 關於我 -->
+        <section id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>關於我 About Me</h2>
+                    <p>每一次探索，都是認識自己的機會。</p>
+                </div>
+
+                <div class="about-text">
+                    <p>
+                        我目前就讀於人工智慧應用工程學士學位學程，
+                        在學習程式設計與人工智慧的過程中，
+                        我希望不只理解技術，也能思考技術如何解決實際問題。
+                    </p>
+
+                    <p>
+                        除了專業學習，我也積極參與校園活動與志工服務，
+                        透過與不同的人互動，持續練習溝通、合作與表達，
+                        讓自己在每一次經驗中不斷成長。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 興趣 -->
+        <section id="interests">
+            <div class="container">
+                <div class="section-title">
+                    <h2>我的興趣 My Interests</h2>
+                    <p>從日常生活中發現樂趣與靈感。</p>
+                </div>
+
+                <div class="cards">
+                    <article class="card">
+                        <div class="emoji">📺</div>
+                        <h3>觀看 YouTube</h3>
+                        <p>
+                            利用自己的時間觀看不同類型的影片，
+                            從各種內容中獲得新知與靈感。
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="emoji">📚</div>
+                        <h3>研究歷史</h3>
+                        <p>
+                            透過了解過去的人物與事件，
+                            思考歷史如何影響現在的世界。
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="emoji">🤝</div>
+                        <h3>人際交流</h3>
+                        <p>
+                            享受與不同的人交流，
+                            在互動中學習溝通、理解與合作。
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 經歷 -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-title">
+                    <h2>我的經歷 My Experience</h2>
+                    <p>每一次挑戰，都是累積能力的過程。</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>🎓 專業學習</h3>
+                    <p>
+                        學習人工智慧、程式設計與資料處理，
+                        培養邏輯思考及分析問題的能力。
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>💼 行銷計畫實習</h3>
+                    <p>
+                        透過電話了解潛在客戶的需求並邀請參與課程，
+                        練習溝通技巧、需求探索與面對挫折的能力。
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>🌟 校園志工與活動參與</h3>
+                    <p>
+                        參與活動場地布置、開場主持與活動規劃，
+                        累積團隊合作、臨場應變及公開表達的經驗。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 聯絡我 -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>保持聯繫 Let's Connect</h2>
+                    <p>持續學習、持續探索，讓每一次相遇都有意義。</p>
+                </div>
+
+                <a href="#home" class="btn">回到首頁 ↑</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>© 2026 先佑的個人網站｜用學習探索更多可能</p>
+    </footer>
+
+</body>
+</html>
